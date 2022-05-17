@@ -1,0 +1,329 @@
+@use "sass:math";
+$screens: (
+  "-xs": 0px,
+  "-sm": 576px,
+  "-md": 768px,
+  "-lg": 992px,
+  "-xl": 1200px,
+  "-xxl": 1400px,
+);
+
+@mixin rowCols($ss) {
+  @for $i from 1 to 13 {
+    .row-cols#{$ss}-#{$i} > * {
+      width: calc(((12 / $i) * var(--cw)) + (((12 / $i) - 1) * var(--gap)));
+    }
+  }
+}
+@mixin cols($ss) {
+  @for $i from 1 to 13 {
+    .col#{$ss}-#{$i} {
+      width: calc((var(--cw) * $i) + (var(--gap) * ($i - 1)));
+    }
+  }
+}
+@mixin offsets($ss) {
+  @for $i from 1 to 12 {
+    .offset#{$ss}-#{$i} {
+      margin-left: calc((var(--cw) * $i) + (var(--gap) * $i));
+    }
+  }
+}
+
+@mixin spacing($cs, $ss, $prop, $auto: false, $dir: "") {
+  .#{$cs}#{$ss}-0#{$dir} {
+    #{$prop}: 0rem;
+  }
+  .#{$cs}#{$ss}-1#{$dir} {
+    #{$prop}: 0.25rem;
+  }
+  .#{$cs}#{$ss}-2#{$dir} {
+    #{$prop}: 0.5rem;
+  }
+  .#{$cs}#{$ss}-3#{$dir} {
+    #{$prop}: 1rem;
+  }
+  .#{$cs}#{$ss}-4#{$dir} {
+    #{$prop}: 2rem;
+  }
+  .#{$cs}#{$ss}-5#{$dir} {
+    #{$prop}: 3rem;
+  }
+  .#{$cs}#{$ss}-6#{$dir} {
+    #{$prop}: 4rem;
+  }
+  .#{$cs}#{$ss}-7#{$dir} {
+    #{$prop}: 5rem;
+  }
+  @if $auto {
+    .#{$cs}#{$ss}-auto#{$dir} {
+      #{$prop}: auto;
+    }
+  }
+}
+
+@mixin spacingXY($cs, $ss, $prop1, $prop2, $auto: true) {
+  .#{$cs}#{$ss}-0 {
+    #{$prop1}: 0rem;
+    #{$prop2}: 0rem;
+  }
+  .#{$cs}#{$ss}-1 {
+    #{$prop1}: 0.25rem;
+    #{$prop2}: 0.25rem;
+  }
+  .#{$cs}#{$ss}-2 {
+    #{$prop1}: 0.5rem;
+    #{$prop2}: 0.5rem;
+  }
+  .#{$cs}#{$ss}-3 {
+    #{$prop1}: 1rem;
+    #{$prop2}: 1rem;
+  }
+  .#{$cs}#{$ss}-4 {
+    #{$prop1}: 2rem;
+    #{$prop2}: 2rem;
+  }
+  .#{$cs}#{$ss}-5 {
+    #{$prop1}: 3rem;
+    #{$prop2}: 3rem;
+  }
+  .#{$cs}#{$ss}-6 {
+    #{$prop1}: 4rem;
+    #{$prop2}: 4rem;
+  }
+  .#{$cs}#{$ss}-7 {
+    #{$prop1}: 5rem;
+    #{$prop2}: 5rem;
+  }
+  @if auto {
+    .#{$cs}#{$ss}-auto {
+      #{$prop1}: auto;
+      #{$prop2}: auto;
+    }
+  }
+}
+@mixin textAlign($ss) {
+  .text#{$ss}-center {
+    text-align: center;
+  }
+  .text#{$ss}-start {
+    text-align: start;
+  }
+  .text#{$ss}-end {
+    text-align: end;
+  }
+  .text#{$ss}-left {
+    text-align: left;
+  }
+  .text#{$ss}-right {
+    text-align: right;
+  }
+  .text#{$ss}-justify {
+    text-align: justify;
+  }
+}
+
+@mixin layout($ss) {
+  .visible#{$ss} {
+    visibility: visible !important;
+  }
+  .invisible#{$ss} {
+    visibility: none !important;
+  }
+  .d#{$ss}-flex {
+    display: flex;
+  }
+  .d#{$ss}-inline-flex {
+    display: inline-flex;
+  }
+  .d#{$ss}-block {
+    display: block;
+  }
+  .d#{$ss}-inline-block {
+    display: inline-block;
+  }
+  .d#{$ss}-none {
+    display: none;
+  }
+  .flex#{$ss}-row {
+    flex-direction: row;
+  }
+  .flex#{$ss}-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .flex#{$ss}-column {
+    flex-direction: column;
+  }
+  .flex#{$ss}-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .flex#{$ss}-fill {
+    flex: 1 1 auto !important;
+  }
+  .flex#{$ss}-grow-0 {
+    flex-grow: 0 !important;
+  }
+  .flex#{$ss}-grow-1 {
+    flex-grow: 1 !important;
+  }
+  .flex#{$ss}-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  .flex#{$ss}-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  .flex#{$ss}-nowrap {
+    flex-wrap: nowrap;
+  }
+  .flex#{$ss}-wrap {
+    flex-wrap: wrap;
+  }
+  .flex#{$ss}-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  @include textAlign($ss);
+  .jc#{$ss}-center {
+    justify-content: center;
+  }
+  .jc#{$ss}-start {
+    justify-content: flex-start;
+  }
+  .jc#{$ss}-end {
+    justify-content: flex-end;
+  }
+  .jc#{$ss}-between {
+    justify-content: space-between;
+  }
+  .jc#{$ss}-around {
+    justify-content: space-around;
+  }
+  .jc#{$ss}-evenly {
+    justify-content: space-evenly;
+  }
+  .jc#{$ss}-stretch {
+    justify-content: stretch;
+  }
+  .ai#{$ss}-start {
+    align-items: flex-start;
+  }
+  .ai#{$ss}-end {
+    align-items: flex-end;
+  }
+  .ai#{$ss}-center {
+    align-items: center;
+  }
+  .ai#{$ss}-baseline {
+    align-items: baseline;
+  }
+  .ai#{$ss}-stretch {
+    align-items: stretch;
+  }
+  .as#{$ss}-start {
+    align-self: flex-start;
+  }
+  .as#{$ss}-end {
+    align-self: flex-end;
+  }
+  .as#{$ss}-center {
+    align-self: center;
+  }
+  .as#{$ss}-baseline {
+    align-self: baseline;
+  }
+  .as#{$ss}-stretch {
+    align-self: stretch;
+  }
+  .ac#{$ss}-center {
+    align-content: center;
+  }
+  .ac#{$ss}-start {
+    align-content: flex-start;
+  }
+  .ac#{$ss}-end {
+    align-content: flex-end;
+  }
+  .ac#{$ss}-between {
+    align-content: space-between;
+  }
+  .ac#{$ss}-around {
+    align-content: space-around;
+  }
+  .ac#{$ss}-stretch {
+    align-content: stretch;
+  }
+  // columns gap
+  @include spacing("gap", $ss, "--gap");
+  @include spacing("row-gap", $ss, "row-gap");
+  // columns per row
+  @include rowCols($ss);
+  .col#{$ss} {
+    flex: 1 0 0%;
+  }
+  .col#{$ss}-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  @include cols($ss);
+  // offset
+  @include offsets($ss);
+  // margin all
+  @include spacing("m", $ss, "margin", true);
+  // margin x axis
+  @include spacingXY("mx", $ss, "margin-left", "margin-right", true);
+  // marin y axis
+  @include spacingXY("my", $ss, "margin-top", "margin-bottom", true);
+  // margin start
+  @include spacing("ms", $ss, "margin-left", true, ":not(:lang(ar))");
+  @include spacing("ms", $ss, "margin-right", true, ":lang(ar)");
+  // margin end
+  @include spacing("me", $ss, "margin-right", true, ":not(:lang(ar))");
+  @include spacing("me", $ss, "margin-left", true, ":lang(ar)");
+  // margin top
+  @include spacing("mt", $ss, "margin-top", true);
+  // margin bottom
+  @include spacing("mb", $ss, "margin-bottom", true);
+  // margin left
+  @include spacing("ml", $ss, "margin-left", true);
+  // margin right
+  @include spacing("mr", $ss, "margin-right", true);
+  // padding all
+  @include spacing("p", $ss, "padding");
+  // padding x axis
+  @include spacingXY("px", $ss, "padding-left", "padding-right");
+  // padding y axis
+  @include spacingXY("py", $ss, "padding-top", "padding-bottom");
+  // padding start
+  @include spacing("ps", $ss, "padding-left", false, ":not(:lang(ar))");
+  @include spacing("ps", $ss, "padding-right", false, ":lang(ar)");
+  // padding end
+  @include spacing("pe", $ss, "padding-right", false, ":not(:lang(ar))");
+  @include spacing("pe", $ss, "padding-left", false, ":lang(ar)");
+  // padding top
+  @include spacing("pt", $ss, "padding-top");
+  // padding bottom
+  @include spacing("pb", $ss, "padding-bottom");
+  // padding left
+  @include spacing("pl", $ss, "padding-left");
+  // padding right
+  @include spacing("pr", $ss, "padding-right");
+}
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  --gap: 1rem;
+  --cw: calc((100% - var(--gap) * 11) / 12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+@include layout("");
+
+// responsive layouts
+@each $name, $sz in $screens {
+  @media screen and (min-width: $sz) {
+    @include layout($name);
+  }
+}

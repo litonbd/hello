@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap");
+:root {
+  --brand-color: rgb(0, 160, 110);
+  --brand-color-30: rgba(0, 140, 110, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #2c2c2c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  line-height: 1.6em;
+  word-spacing: 0.05em;
+  letter-spacing: 0.02em;
+  font-size: 17px;
+}
+
+/* .ff-jet {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  letter-spacing: -0.08em;
+  word-spacing: -0.32em;
+}
+
+.ff-source {
+  font-family: "Source Sans Pro", sans-serif;
+} */
+
+.bg-fill {
+  background: hsl(0deg 0% 96%);
+  padding: 9px;
+  text-shadow: 0px 1px 0px #787878;
+}
+
+input[type="text"] {
+  padding: 8px 20px;
+  border-radius: 3px;
+  border: 1px solid #dddddd;
+}
+
+.row-cols-bg > div {
+  background: var(--brand-color);
+  color: white;
+  padding: 9px;
+}
+
+a,
+a:visited {
+  color: #44c186;
+}
+
+.border {
+  min-height: 11px;
+  border: 1px solid var(--brand-color);
+}
+
+.bg-brand {
+  background: var(--brand-color);
+  color: white;
+  padding: 9px;
+}
+
+b{
+  color: #607d8b;
+}
+
+.c-green {
+  color: #009688;
+}
+
+
+.hl {
+  background-color: #ffffdd;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #ff9800;
+  border-radius: 3px;
+}
